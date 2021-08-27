@@ -1,0 +1,3 @@
+# TinySurvivor
+
+Minimalist mobile game :)
