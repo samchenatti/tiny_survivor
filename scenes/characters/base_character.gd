@@ -2,17 +2,51 @@ extends Node2D
 
 class_name BaseCharacter
 
+enum State {
+	IDLE,
+	ATTACKING,
+	DEFENDING,
+	RECEIVING_DAMAGE,
+	WALKING,
+	JUMPING
+}
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+const state_to_anim = {
+	State.IDLE: 'idle',
+	State.ATTACKING: 'atacking',
+	State.DEFENDING: 'defending',
+	State.RECEIVING_DAMAGE: 'idle',
+	State.WALKING: 'walking',
+	State.JUMPING: 'jumping'
+}
+
+enum Face {
+	RIGHT,
+	LEFT
+}
+
+const GRID_SIZE = Vector2(16, 16)
+
+var state = State.IDLE
+var state_machine = null
+
+export(Face) var facing = Face.RIGHT
+export(int) var speed = 0
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	state_machine = $AnimationTree.get('parameters/playback')
 
+func process():
+	state_machine.travel(state_to_anim[self.state])
+	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func face(side: int):
+	self.facing = side
+
+	scale.x = scale.y
+	if facing == Face.LEFT:
+		scale.x = -1 * scale.y
+
+func set_state(state: int):
+	self.state = state

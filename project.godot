@@ -9,19 +9,42 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AsepriteImportData",
+"language": "GDScript",
+"path": "res://addons/aseprite_importer/classes/AsepriteImportData.gd"
+}, {
+"base": "Node",
+"class": "AsepriteImporter",
+"language": "GDScript",
+"path": "res://addons/aseprite_importer/classes/AsepriteImporter.gd"
+}, {
 "base": "Node2D",
 "class": "BaseCharacter",
 "language": "GDScript",
 "path": "res://scenes/characters/base_character.gd"
+}, {
+"base": "Node",
+"class": "EditorTheme",
+"language": "GDScript",
+"path": "res://addons/aseprite_importer/classes/EditorTheme.gd"
 } ]
 _global_script_class_icons={
-"BaseCharacter": ""
+"AsepriteImportData": "",
+"AsepriteImporter": "",
+"BaseCharacter": "",
+"EditorTheme": ""
 }
 
 [application]
 
 config/name="tiny_survivor"
+run/main_scene="res://scenes/levels/MainLevel.tscn"
 config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "aseprite_importer" )
 
 [gdnative]
 
@@ -29,4 +52,5 @@ singletons=[  ]
 
 [rendering]
 
+environment/default_clear_color=Color( 0.415686, 0.745098, 0.188235, 1 )
 environment/default_environment="res://default_env.tres"

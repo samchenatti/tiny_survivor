@@ -1,3 +1,18 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/characters/player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/levels/MainLevel.gd" type="Script" id=2]
+[ext_resource path="res://scenes/cursor/Cursor.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+z_index = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.3, 0.3 )
+
+[node name="Cursor" parent="." instance=ExtResource( 4 )]
+z_index = 1
